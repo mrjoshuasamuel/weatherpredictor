@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather forcast</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width-device, initial-scale=1"/>
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="stylesheetboot.css" rel="stylesheet"/>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 center">
+			<h1 class="center white">Weather Predictor</h1>
+			<p class="lead center white">Enter your City below to get Weather Forcast</p>
+			<form>
+				<div class="form-group">
+					<input type="text" id="city" class="form-control" name="city" placeholder="Eg. Hyderabad, Delhi......"/>
+				</div>
+				<button id="weatherClick" class="btn btn-success btn-lg">Find My Weather</button>
+			</form>
+			<div id="success" class="alert alert-success">Success!</div>
+			<div id="fail" class="alert alert-fail">Could not find the Location. Please try again</div>
+			<div id="noCity" class="alert alert-danger">Please Enter a City</div>
+			</div>
+		
+		</div>
+
+	</div>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script>
+		$("#weatherClick").click(function(event){
+			event.preventDefault();
+			$(".alert").hide();
+			if ($("#city").val()!=""){
+				$.get("scraper.php?city="+$("#city").val(),
+				function(data){
+					if (data==""){
+						$("#fail").fadeIn();
+					
+					}
+					else {
+						$(#success).fadeIn();
+					}
+				}
+				);
+			
+				}
+			else{
+				$("#noCity").fadeIn();
+			}
+		
+		})
+	
+	
+	
+	</script>
+	
+</body>
+
+</html>
